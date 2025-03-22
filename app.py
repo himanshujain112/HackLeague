@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from config import DISCORD_TOKEN, data
+from ai import generate
+import asyncio
 
 bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
 bot.intents.members = True
@@ -29,7 +31,10 @@ async def challenge(interaction: discord.Interaction):
 @bot.tree.command(name='submit', description='Submit a code for review.')
 @app_commands.describe(code='The code you want to submit for review.')
 async def submit(interaction: discord.Interaction, code: str):
-    await interaction.response.send_message('Code submitted!')
+    await interaction.response.defer()
+    response = generate(code)
+    await interaction.followup.send(f'```{response}```')
+    #await interaction.response.send_message('Code submitted!')
 
 @bot.tree.command(name='leaderboard', description='Check your rankings in the server.')
 async def leaderboard(ctx):

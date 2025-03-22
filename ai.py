@@ -1,12 +1,11 @@
 import base64
-import os
 from google import genai
 from google.genai import types # type: ignore
-
+from config import GEMINI_KEY
 
 def generate(input_text: str):
     client = genai.Client(
-        api_key=os.environ.get("GEMINI_KEY"),
+        api_key=GEMINI_KEY,
     )
 
     model = "gemini-2.0-flash"
@@ -22,17 +21,20 @@ def generate(input_text: str):
         temperature=1,
         top_p=0.95,
         top_k=40,
-        max_output_tokens=8192,
+        max_output_tokens=600,  # Assuming an average of 2 tokens per word
         response_mime_type="text/plain",
         system_instruction=[
-            types.Part.from_text(text="""You are HackLeague, an AI coding mentor and competition judge. Your job is to review coding challenge submissions, provide feedback on efficiency, correctness, and best practices, and encourage users to improve. Give clear explanations, suggest optimizations, and motivate users while keeping responses concise and engaging."""),
+            types.Part.from_text(text="""Generate a code snippet based on the given text. Do not include the input text in the output, make it short and answer."""),
         ],
     )
 
+    complete_text = ""
     for chunk in client.models.generate_content_stream(
         model=model,
         contents=contents,
         config=generate_content_config,
     ):
+        complete_text += chunk.text
         print(chunk.text, end="")
-        #return chunk.text
+    
+    return complete_text
