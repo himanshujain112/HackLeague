@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "difficulty": "easy",
+        "question": "Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target.",
+        "hint": "Use a hash map to store previously seen values and check if (target - current number) exists in the map."
+    },
+    {
+        "id": 2,
+        "difficulty": "easy",
+        "question": "Determine if a given integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.",
+        "hint": "Reverse half of the number and compare it with the other half, or convert the number to a string for easy comparison."
+    },
+    {
+        "id": 3,
+        "difficulty": "easy",
+        "question": "Implement the FizzBuzz problem: Print numbers from 1 to n. For multiples of 3, print 'Fizz'; for multiples of 5, print 'Buzz'; for multiples of both, print 'FizzBuzz'.",
+        "hint": "Use modulo operator (%) to check divisibility and handle the 'FizzBuzz' case first to avoid overlap."
+    },
+    {
+        "id": 4,
+        "difficulty": "medium",
+        "question": "Given a string s, find the length of the longest substring without repeating characters.",
+        "hint": "Use a sliding window approach with a set or a hash map to track unique characters and adjust the window dynamically."
+    },
+    {
+        "id": 5,
+        "difficulty": "medium",
+        "question": "Given an array of coin denominations and a total amount, determine the fewest number of coins needed to make up that amount. Return -1 if it's impossible.",
+        "hint": "Dynamic Programming (DP) approach: Create a DP array where dp[i] represents the minimum coins needed for amount i."
+    },
+    {
+        "id": 6,
+        "difficulty": "medium",
+        "question": "Merge all overlapping intervals in a given list of intervals and return the result.",
+        "hint": "Sort intervals by their start values, then iterate and merge overlapping intervals by comparing the end of the last merged interval with the current start."
+    },
+    {
+        "id": 7,
+        "difficulty": "medium",
+        "question": "Validate if a given binary tree is a valid Binary Search Tree (BST).",
+        "hint": "Use recursion with valid range boundaries (min and max) for each node to ensure left children are smaller and right children are larger."
+    },
+    {
+        "id": 8,
+        "difficulty": "hard",
+        "question": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
+        "hint": "Use two pointers or precompute left-max and right-max arrays to determine trapped water at each index."
+    },
+    {
+        "id": 9,
+        "difficulty": "hard",
+        "question": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
+        "hint": "Binary search approach: Partition both arrays to ensure elements on the left are smaller than elements on the right, and adjust partitions until balanced."
+    },
+    {
+        "id": 10,
+        "difficulty": "hard",
+        "question": "Design and implement a Least Frequently Used (LFU) cache with O(1) average time complexity for get and put operations.",
+        "hint": "Use a combination of hash maps and a min-heap or a frequency-sorted linked list to track frequency and maintain O(1) operations."
+    }
+]
