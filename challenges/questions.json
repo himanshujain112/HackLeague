@@ -1,62 +1,802 @@
 [
     {
-        "id": 1,
+        "id": 101,
         "difficulty": "easy",
-        "question": "Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target.",
-        "hint": "Use a hash map to store previously seen values and check if (target - current number) exists in the map."
+        "question": "Given an array of integers and a target value, return the indices of the two numbers such that they add up to the target.",
+        "hint": "Consider using a hash table (or dictionary) to store numbers and their indices for efficient lookup.",
+        "input": "nums = [2, 7, 11, 15], target = 9",
+        "output": "[0, 1]"
     },
     {
-        "id": 2,
+        "id": 102,
         "difficulty": "easy",
-        "question": "Determine if a given integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.",
-        "hint": "Reverse half of the number and compare it with the other half, or convert the number to a string for easy comparison."
+        "question": "Write a function that reverses a given string.",
+        "hint": "Implement the reversal using a loop or a built-in function that reverses strings.",
+        "input": "\"hello\"",
+        "output": "\"olleh\""
     },
     {
-        "id": 3,
+        "id": 103,
         "difficulty": "easy",
-        "question": "Implement the FizzBuzz problem: Print numbers from 1 to n. For multiples of 3, print 'Fizz'; for multiples of 5, print 'Buzz'; for multiples of both, print 'FizzBuzz'.",
-        "hint": "Use modulo operator (%) to check divisibility and handle the 'FizzBuzz' case first to avoid overlap."
+        "question": "Determine whether a given value (string or number) is a palindrome.",
+        "hint": "Convert the input to a string if necessary and check if it reads the same forwards and backwards.",
+        "input": "\"racecar\"",
+        "output": "True"
     },
     {
-        "id": 4,
+        "id": 104,
+        "difficulty": "easy",
+        "question": "Given a string containing only the characters '(', ')', '{', '}', '[' and ']', determine if the string is valid.",
+        "hint": "Use a stack to match opening and closing brackets.",
+        "input": "\"()[]{}\"",
+        "output": "True"
+    },
+    {
+        "id": 105,
+        "difficulty": "easy",
+        "question": "Given an array of integers, return true if any value appears at least twice in the array.",
+        "hint": "Use a set or hash table to track seen elements.",
+        "input": "[1, 2, 3, 1]",
+        "output": "True"
+    },
+    {
+        "id": 106,
+        "difficulty": "easy",
+        "question": "Given a non-empty array of digits representing a non-negative integer, add one to the integer.",
+        "hint": "Handle the carry over properly; consider using a loop that processes digits from the least significant end.",
+        "input": "[1, 2, 3]",
+        "output": "[1, 2, 4]"
+    },
+    {
+        "id": 107,
+        "difficulty": "easy",
+        "question": "Given a sorted array, remove the duplicates in-place such that each element appears only once, and return the new length of the array.",
+        "hint": "Use the two-pointer technique to overwrite duplicates without using extra space.",
+        "input": "[0, 0, 1, 1, 1, 2, 2, 3, 3, 4]",
+        "output": "5"
+    },
+    {
+        "id": 108,
+        "difficulty": "easy",
+        "question": "Implement a function that finds the first occurrence of a substring (needle) in a string (haystack) and returns its index, or -1 if not found.",
+        "hint": "Implement a substring search algorithm or use a built-in function if available.",
+        "input": "haystack = \"hello\", needle = \"ll\"",
+        "output": "2"
+    },
+    {
+        "id": 109,
+        "difficulty": "easy",
+        "question": "Compute the factorial of a given non-negative integer n.",
+        "hint": "Implement this using either recursion or an iterative loop.",
+        "input": "5",
+        "output": "120"
+    },
+    {
+        "id": 110,
+        "difficulty": "easy",
+        "question": "Given an array of integers, calculate the sum of its elements.",
+        "hint": "Iterate through the array and accumulate the sum using a loop or a built-in function.",
+        "input": "[1, 2, 3, 4, 5]",
+        "output": "15"
+    },
+    {
+        "id": 111,
+        "difficulty": "easy",
+        "question": "Given an array of integers, return the product of all elements.",
+        "hint": "Multiply each element iteratively or using a built-in function.",
+        "input": "[1, 2, 3, 4]",
+        "output": "24"
+    },
+    {
+        "id": 112,
+        "difficulty": "easy",
+        "question": "Determine whether two strings are anagrams of each other.",
+        "hint": "Sort both strings or count character frequencies.",
+        "input": "\"listen\", \"silent\"",
+        "output": "True"
+    },
+    {
+        "id": 113,
+        "difficulty": "easy",
+        "question": "Find the minimum element in an array of integers.",
+        "hint": "Iterate through the array or use the built-in min() function.",
+        "input": "[5, 3, 8, 1, 4]",
+        "output": "1"
+    },
+    {
+        "id": 114,
+        "difficulty": "easy",
+        "question": "Count the number of words in a given string.",
+        "hint": "Split the string by spaces.",
+        "input": "\"Hello world from HackLeague\"",
+        "output": "4"
+    },
+    {
+        "id": 115,
+        "difficulty": "easy",
+        "question": "Given a list of numbers, return a new list with each element squared.",
+        "hint": "Use a loop or list comprehension to square each element.",
+        "input": "[1, 2, 3, 4]",
+        "output": "[1, 4, 9, 16]"
+    },
+    {
+        "id": 116,
+        "difficulty": "easy",
+        "question": "Find the average of a list of integers.",
+        "hint": "Sum all elements and divide by the number of elements.",
+        "input": "[10, 20, 30, 40]",
+        "output": "25"
+    },
+    {
+        "id": 117,
+        "difficulty": "easy",
+        "question": "Given two sorted arrays, merge them into a single sorted array.",
+        "hint": "Use two pointers to merge the arrays efficiently.",
+        "input": "arr1 = [1, 3, 5], arr2 = [2, 4, 6]",
+        "output": "[1, 2, 3, 4, 5, 6]"
+    },
+    {
+        "id": 118,
+        "difficulty": "easy",
+        "question": "Reverse the order of words in a sentence.",
+        "hint": "Split the sentence into words, reverse the list, and join them.",
+        "input": "\"Hello world this is HackLeague\"",
+        "output": "\"HackLeague is this world Hello\""
+    },
+    {
+        "id": 119,
+        "difficulty": "easy",
+        "question": "Determine if a given number is even or odd.",
+        "hint": "Use the modulo operator to check for divisibility by 2.",
+        "input": "7",
+        "output": "\"odd\""
+    },
+    {
+        "id": 120,
+        "difficulty": "easy",
+        "question": "Convert a temperature from Celsius to Fahrenheit.",
+        "hint": "Use the formula: F = C * 9/5 + 32.",
+        "input": "25",
+        "output": "77"
+    },
+    {
+        "id": 121,
+        "difficulty": "easy",
+        "question": "Find the largest even number in an array of integers.",
+        "hint": "Filter the array for even numbers and use the max() function.",
+        "input": "[1, 3, 4, 7, 10, 11]",
+        "output": "10"
+    },
+    {
+        "id": 122,
+        "difficulty": "easy",
+        "question": "Calculate the sum of the digits of a given number.",
+        "hint": "Convert the number to a string and sum the integer values of each digit.",
+        "input": "1234",
+        "output": "10"
+    },
+    {
+        "id": 123,
+        "difficulty": "easy",
+        "question": "Determine if a string contains only digits.",
+        "hint": "Check if every character in the string is a digit.",
+        "input": "\"12345\"",
+        "output": "True"
+    },
+    {
+        "id": 124,
+        "difficulty": "easy",
+        "question": "Count the number of occurrences of a given character in a string.",
+        "hint": "Loop through the string or use a built-in count() function.",
+        "input": "string: \"mississippi\", character: \"s\"",
+        "output": "4"
+    },
+    {
+        "id": 125,
+        "difficulty": "easy",
+        "question": "Convert a binary number (given as a string) to its decimal equivalent.",
+        "hint": "Use a built-in conversion function or process the string manually.",
+        "input": "\"1010\"",
+        "output": "10"
+    },
+    {
+        "id": 126,
+        "difficulty": "easy",
+        "question": "Given an array of integers, return the array sorted in ascending order.",
+        "hint": "Use a built-in sort method or implement a simple sorting algorithm.",
+        "input": "[4, 2, 5, 1, 3]",
+        "output": "[1, 2, 3, 4, 5]"
+    },
+    {
+        "id": 127,
+        "difficulty": "easy",
+        "question": "Find the difference between the maximum and minimum numbers in an array.",
+        "hint": "Compute the max and min of the array and subtract them.",
+        "input": "[10, 3, 5, 7, 20]",
+        "output": "17"
+    },
+    {
+        "id": 128,
+        "difficulty": "easy",
+        "question": "Given a string, return the string with all vowels removed.",
+        "hint": "Filter out the characters 'a', 'e', 'i', 'o', and 'u'.",
+        "input": "\"HackLeague\"",
+        "output": "\"HckLg\""
+    },
+    {
+        "id": 129,
+        "difficulty": "easy",
+        "question": "Implement a function to calculate the power of a number (x raised to n).",
+        "hint": "Use a loop or recursion to multiply x by itself n times.",
+        "input": "x = 2, n = 3",
+        "output": "8"
+    },
+    {
+        "id": 130,
+        "difficulty": "easy",
+        "question": "Determine the length of the longest word in a sentence.",
+        "hint": "Split the sentence into words and find the maximum length.",
+        "input": "\"HackLeague is awesome\"",
+        "output": "10"
+    },
+    {
+        "id": 201,
         "difficulty": "medium",
-        "question": "Given a string s, find the length of the longest substring without repeating characters.",
-        "hint": "Use a sliding window approach with a set or a hash map to track unique characters and adjust the window dynamically."
+        "question": "Implement binary search: Given a sorted array and a target value, return the index of the target, or -1 if not found.",
+        "hint": "Use two pointers and compare the middle element with the target.",
+        "input": "arr = [1, 3, 5, 7, 9], target = 7",
+        "output": "3"
     },
     {
-        "id": 5,
+        "id": 202,
         "difficulty": "medium",
-        "question": "Given an array of coin denominations and a total amount, determine the fewest number of coins needed to make up that amount. Return -1 if it's impossible.",
-        "hint": "Dynamic Programming (DP) approach: Create a DP array where dp[i] represents the minimum coins needed for amount i."
+        "question": "Find the first missing positive integer in an unsorted array.",
+        "hint": "Use an indexing trick to place numbers in their correct positions.",
+        "input": "[3, 4, -1, 1]",
+        "output": "2"
     },
     {
-        "id": 6,
+        "id": 203,
         "difficulty": "medium",
-        "question": "Merge all overlapping intervals in a given list of intervals and return the result.",
-        "hint": "Sort intervals by their start values, then iterate and merge overlapping intervals by comparing the end of the last merged interval with the current start."
+        "question": "Merge two sorted arrays into one sorted array without using a built-in sort function.",
+        "hint": "Use a two-pointer approach to compare elements from both arrays.",
+        "input": "arr1 = [1, 3, 5], arr2 = [2, 4, 6]",
+        "output": "[1,2,3,4,5,6]"
     },
     {
-        "id": 7,
+        "id": 204,
         "difficulty": "medium",
-        "question": "Validate if a given binary tree is a valid Binary Search Tree (BST).",
-        "hint": "Use recursion with valid range boundaries (min and max) for each node to ensure left children are smaller and right children are larger."
+        "question": "Find the contiguous subarray with the largest sum using Kadane's Algorithm.",
+        "hint": "Iterate through the array keeping track of current and global max sums.",
+        "input": "[-2,1,-3,4,-1,2,1,-5,4]",
+        "output": "6"
     },
     {
-        "id": 8,
+        "id": 205,
+        "difficulty": "medium",
+        "question": "Given a string, find the length of the longest substring without repeating characters.",
+        "hint": "Utilize a sliding window technique to track the current substring.",
+        "input": "\"abcabcbb\"",
+        "output": "3"
+    },
+    {
+        "id": 206,
+        "difficulty": "medium",
+        "question": "Find the median of two sorted arrays.",
+        "hint": "Apply binary search partitioning on the smaller array.",
+        "input": "nums1 = [1,3], nums2 = [2]",
+        "output": "2.0"
+    },
+    {
+        "id": 207,
+        "difficulty": "medium",
+        "question": "Rotate an array to the right by k steps.",
+        "hint": "Use the reversal algorithm to rotate the array in-place.",
+        "input": "nums = [1,2,3,4,5,6,7], k = 3",
+        "output": "[5,6,7,1,2,3,4]"
+    },
+    {
+        "id": 208,
+        "difficulty": "medium",
+        "question": "Find the longest palindromic substring in a given string.",
+        "hint": "Use dynamic programming or expand around center technique.",
+        "input": "\"babad\"",
+        "output": "\"bab\""
+    },
+    {
+        "id": 209,
+        "difficulty": "medium",
+        "question": "Determine if a person can attend all meetings given an array of meeting time intervals.",
+        "hint": "Sort intervals by start time and check for overlaps.",
+        "input": "[[0,30],[5,10],[15,20]]",
+        "output": "False"
+    },
+    {
+        "id": 210,
+        "difficulty": "medium",
+        "question": "Detect if a linked list has a cycle using Floyd’s Cycle Detection algorithm.",
+        "hint": "Use two pointers moving at different speeds.",
+        "input": "List: 3->2->0->-4 (cycle exists)",
+        "output": "True"
+    },
+    {
+        "id": 211,
+        "difficulty": "medium",
+        "question": "Implement the quicksort algorithm.",
+        "hint": "Choose a pivot and partition the array recursively.",
+        "input": "[3,6,8,10,1,2,1]",
+        "output": "[1,1,2,3,6,8,10]"
+    },
+    {
+        "id": 212,
+        "difficulty": "medium",
+        "question": "Count the number of islands in a 2D grid map using DFS/BFS.",
+        "hint": "Traverse the grid and mark visited islands.",
+        "input": "grid = [[\"1\",\"1\",\"0\",\"0\"],[\"1\",\"1\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"0\",\"0\",\"1\"]]",
+        "output": "3"
+    },
+    {
+        "id": 213,
+        "difficulty": "medium",
+        "question": "Determine if a string is a valid palindrome considering only alphanumeric characters.",
+        "hint": "Ignore cases and non-alphanumeric characters; use two pointers.",
+        "input": "\"A man, a plan, a canal: Panama\"",
+        "output": "True"
+    },
+    {
+        "id": 214,
+        "difficulty": "medium",
+        "question": "Check if two strings are isomorphic.",
+        "hint": "Map characters from one string to another ensuring consistency.",
+        "input": "\"egg\", \"add\"",
+        "output": "True"
+    },
+    {
+        "id": 215,
+        "difficulty": "medium",
+        "question": "Find the majority element in an array that appears more than half the time.",
+        "hint": "Use the Boyer-Moore Voting algorithm.",
+        "input": "[3,3,4,2,4,4,2,4,4]",
+        "output": "4"
+    },
+    {
+        "id": 216,
+        "difficulty": "medium",
+        "question": "Find the minimum window substring of s that contains all characters of t.",
+        "hint": "Use a sliding window and hash maps to track characters.",
+        "input": "s = \"ADOBECODEBANC\", t = \"ABC\"",
+        "output": "\"BANC\""
+    },
+    {
+        "id": 217,
+        "difficulty": "medium",
+        "question": "Search for a target value in a 2D matrix with sorted rows and columns.",
+        "hint": "Use staircase search starting from the top-right corner.",
+        "input": "matrix = [[1,4,7],[2,5,8],[3,6,9]], target = 5",
+        "output": "True"
+    },
+    {
+        "id": 218,
+        "difficulty": "medium",
+        "question": "Perform an in-order traversal of a binary tree and return the list of visited nodes.",
+        "hint": "Use recursion or a stack to traverse the tree.",
+        "input": "Binary tree: [1, null, 2, 3]",
+        "output": "[1,3,2]"
+    },
+    {
+        "id": 219,
+        "difficulty": "medium",
+        "question": "Find all unique triplets in an array that sum to zero (3Sum problem).",
+        "hint": "Sort the array and use a two-pointer technique.",
+        "input": "[-1, 0, 1, 2, -1, -4]",
+        "output": "[[-1,-1,2],[-1,0,1]]"
+    },
+    {
+        "id": 220,
+        "difficulty": "medium",
+        "question": "Determine the minimum number of cuts needed to partition a string into palindromic substrings.",
+        "hint": "Use dynamic programming to track palindromic substrings.",
+        "input": "\"aab\"",
+        "output": "1"
+    },
+    {
+        "id": 221,
+        "difficulty": "medium",
+        "question": "Given an array of integers, return the indices of two numbers such that they add up to a specific target (handling duplicates appropriately).",
+        "hint": "Use a hash map while checking for duplicates.",
+        "input": "nums = [2, 2, 3, 4], target = 4",
+        "output": "[0,1]"
+    },
+    {
+        "id": 222,
+        "difficulty": "medium",
+        "question": "Implement merge sort to sort an array of integers.",
+        "hint": "Recursively split the array and merge the sorted halves.",
+        "input": "[12, 11, 13, 5, 6, 7]",
+        "output": "[5,6,7,11,12,13]"
+    },
+    {
+        "id": 223,
+        "difficulty": "medium",
+        "question": "Find the maximum product of two integers in an array.",
+        "hint": "Consider both positive and negative numbers.",
+        "input": "[5, -10, -20, 4]",
+        "output": "200"
+    },
+    {
+        "id": 224,
+        "difficulty": "medium",
+        "question": "Check whether a string contains balanced brackets (i.e., every opening bracket has a corresponding closing bracket).",
+        "hint": "Utilize a stack to match opening and closing brackets.",
+        "input": "\"[{()}]\"",
+        "output": "True"
+    },
+    {
+        "id": 225,
+        "difficulty": "medium",
+        "question": "Return the first recurring character in a string.",
+        "hint": "Iterate through the string while tracking characters in a set.",
+        "input": "\"acbbac\"",
+        "output": "\"b\""
+    },
+    {
+        "id": 226,
+        "difficulty": "medium",
+        "question": "Determine the maximum depth of a binary tree.",
+        "hint": "Use recursion to calculate the depth from the root to the deepest leaf.",
+        "input": "Binary tree: [3,9,20,null,null,15,7]",
+        "output": "3"
+    },
+    {
+        "id": 227,
+        "difficulty": "medium",
+        "question": "Find the longest substring that appears at least twice in a given string.",
+        "hint": "Consider using dynamic programming or suffix arrays/trees.",
+        "input": "\"banana\"",
+        "output": "\"ana\""
+    },
+    {
+        "id": 228,
+        "difficulty": "medium",
+        "question": "Given a 2D matrix of characters, determine if there exists a path that spells a given word (Word Search problem).",
+        "hint": "Use DFS with backtracking to explore all paths.",
+        "input": "matrix = [['A','B','C','E'],['S','F','C','S'],['A','D','E','E']], word = \"ABCCED\"",
+        "output": "True"
+    },
+    {
+        "id": 229,
+        "difficulty": "medium",
+        "question": "Find the length of the longest consecutive elements sequence in an unsorted array.",
+        "hint": "Use a set for O(n) time complexity to track sequences.",
+        "input": "[100, 4, 200, 1, 3, 2]",
+        "output": "4"
+    },
+    {
+        "id": 230,
+        "difficulty": "medium",
+        "question": "Convert a non-negative integer to its English words representation.",
+        "hint": "Break the number into chunks and map each to words recursively.",
+        "input": "123",
+        "output": "\"One Hundred Twenty Three\""
+    },
+    {
+        "id": 231,
+        "difficulty": "medium",
+        "question": "Given a binary tree, determine if it is height-balanced (i.e., the difference in heights between the left and right subtrees is at most 1 for every node).",
+        "hint": "Use recursion to compute the height of each subtree and check the balance condition.",
+        "input": "Binary tree: [3,9,20,null,null,15,7]",
+        "output": "True"
+    },
+    {
+        "id": 232,
+        "difficulty": "medium",
+        "question": "Find the number of unique paths from the top-left corner to the bottom-right corner of an m x n grid.",
+        "hint": "Use dynamic programming or combinatorial mathematics to calculate the number of paths.",
+        "input": "m = 3, n = 7",
+        "output": "28"
+    },
+    {
+        "id": 233,
+        "difficulty": "medium",
+        "question": "Given a set of intervals, merge all overlapping intervals and return the merged intervals.",
+        "hint": "Sort the intervals by their start times, then iterate and merge overlapping intervals.",
+        "input": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+        "output": "[[1,6],[8,10],[15,18]]"
+    },
+    {
+        "id": 234,
+        "difficulty": "medium",
+        "question": "Given a string, find the longest repeating substring that appears at least twice.",
+        "hint": "Consider using dynamic programming or suffix arrays to identify repeating patterns.",
+        "input": "string = \"abracadabra\"",
+        "output": "\"abra\""
+    },
+    {
+        "id": 235,
+        "difficulty": "medium",
+        "question": "Implement a function to check if a given number is a power of two.",
+        "hint": "Utilize bit manipulation or repeated division by 2 to determine if the number is a power of two.",
+        "input": "number = 16",
+        "output": "True"
+    },
+    {
+        "id": 236,
+        "difficulty": "medium",
+        "question": "Given two strings, find the length of their longest common subsequence (LCS).",
+        "hint": "Use dynamic programming to build a 2D table that tracks common subsequences.",
+        "input": "text1 = \"abcde\", text2 = \"ace\"",
+        "output": "3"
+    },
+    {
+        "id": 237,
+        "difficulty": "medium",
+        "question": "Given an array of integers, move all zeros to the end while maintaining the relative order of the non-zero elements.",
+        "hint": "Use a two-pointer approach to shift non-zero elements and fill in zeros at the end.",
+        "input": "nums = [0,1,0,3,12]",
+        "output": "[1,3,12,0,0]"
+    },
+    {
+        "id": 238,
+        "difficulty": "medium",
+        "question": "Implement a function to compute x raised to the power n (x^n) without using built-in power functions.",
+        "hint": "Use fast exponentiation by squaring for an efficient solution.",
+        "input": "x = 2, n = 10",
+        "output": "1024"
+    },
+    {
+        "id": 239,
+        "difficulty": "medium",
+        "question": "Given a sorted array, determine the index where a target value should be inserted to maintain order.",
+        "hint": "Use binary search to efficiently find the correct insertion position.",
+        "input": "nums = [1,3,5,6], target = 5",
+        "output": "2"
+    },
+    {
+        "id": 240,
+        "difficulty": "medium",
+        "question": "Determine if a given string can be rearranged to form a palindrome.",
+        "hint": "Count character frequencies; at most one character can have an odd count.",
+        "input": "string = \"carrace\"",
+        "output": "True"
+    },
+    {
+        "id": 301,
         "difficulty": "hard",
-        "question": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
-        "hint": "Use two pointers or precompute left-max and right-max arrays to determine trapped water at each index."
+        "question": "Different Ways to Add Parentheses: Given an arithmetic expression as a string, compute all possible results from computing all the different possible ways to group numbers and operators.",
+        "hint": "Use recursion and divide the expression at each operator.",
+        "input": "\"2-1-1\"",
+        "output": "[0, 2]"
     },
     {
-        "id": 9,
+        "id": 302,
         "difficulty": "hard",
-        "question": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
-        "hint": "Binary search approach: Partition both arrays to ensure elements on the left are smaller than elements on the right, and adjust partitions until balanced."
+        "question": "Basic Calculator III: Evaluate a string expression containing +, -, *, / and parentheses.",
+        "hint": "Use two stacks to handle numbers and operators, processing operator precedence.",
+        "input": "\"3+2*2\"",
+        "output": "7"
     },
     {
-        "id": 10,
+        "id": 303,
         "difficulty": "hard",
-        "question": "Design and implement a Least Frequently Used (LFU) cache with O(1) average time complexity for get and put operations.",
-        "hint": "Use a combination of hash maps and a min-heap or a frequency-sorted linked list to track frequency and maintain O(1) operations."
+        "question": "Edit Distance: Given two strings, compute the minimum number of operations required to convert one string into the other.",
+        "hint": "Use dynamic programming to fill a matrix representing edit distances.",
+        "input": "\"intention\", \"execution\"",
+        "output": "5"
+    },
+    {
+        "id": 304,
+        "difficulty": "hard",
+        "question": "Longest Valid Parentheses: Given a string containing just '(' and ')', find the length of the longest valid (well-formed) parentheses substring.",
+        "hint": "Use a stack or dynamic programming to track valid substrings.",
+        "input": "\"(()\"",
+        "output": "2"
+    },
+    {
+        "id": 305,
+        "difficulty": "hard",
+        "question": "Sliding Window Maximum: Given an array and a window size k, return an array of the maximum value in each window.",
+        "hint": "Use a deque to maintain the indices of potential maximum values.",
+        "input": "nums = [1,3,-1,-3,5,3,6,7], k = 3",
+        "output": "[3,3,5,5,6,7]"
+    },
+    {
+        "id": 306,
+        "difficulty": "hard",
+        "question": "Merge k Sorted Lists: Merge k sorted linked lists and return it as one sorted list.",
+        "hint": "Use a min-heap to efficiently merge the lists.",
+        "input": "lists = [[1,4,5],[1,3,4],[2,6]]",
+        "output": "[1,1,2,3,4,4,5,6]"
+    },
+    {
+        "id": 307,
+        "difficulty": "hard",
+        "question": "Word Ladder II: Given two words (beginWord and endWord) and a dictionary, find all the shortest transformation sequences from beginWord to endWord.",
+        "hint": "Use BFS to find shortest paths and DFS to construct the paths.",
+        "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+        "output": "[[\"hit\",\"hot\",\"dot\",\"dog\",\"cog\"], [\"hit\",\"hot\",\"lot\",\"log\",\"cog\"]]"
+    },
+    {
+        "id": 308,
+        "difficulty": "hard",
+        "question": "Longest Increasing Path in a Matrix: Given an m x n matrix, find the length of the longest increasing path.",
+        "hint": "Use DFS with memoization to explore increasing paths.",
+        "input": "matrix = [[9,9,4],[6,6,8],[2,1,1]]",
+        "output": "4"
+    },
+    {
+        "id": 309,
+        "difficulty": "hard",
+        "question": "Trapping Rain Water: Given an array representing an elevation map, compute how much water it can trap after raining.",
+        "hint": "Use two pointers or dynamic programming to compute left and right max heights.",
+        "input": "[0,1,0,2,1,0,1,3,2,1,2,1]",
+        "output": "6"
+    },
+    {
+        "id": 310,
+        "difficulty": "hard",
+        "question": "N-Queens: Solve the N-Queens puzzle by placing n queens on an n x n chessboard so that no two queens attack each other.",
+        "hint": "Use backtracking to generate valid configurations.",
+        "input": "n = 4",
+        "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"], [\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]"
+    },
+    {
+        "id": 311,
+        "difficulty": "hard",
+        "question": "Sudoku Solver: Write a program to solve a Sudoku puzzle by filling the empty cells.",
+        "hint": "Use backtracking and constraint propagation.",
+        "input": "A partially filled 9x9 sudoku board",
+        "output": "A complete, valid sudoku board"
+    },
+    {
+        "id": 312,
+        "difficulty": "hard",
+        "question": "Serialize and Deserialize Binary Tree: Design an algorithm to serialize a binary tree into a string and deserialize it back to a tree.",
+        "hint": "Use preorder traversal with markers for null nodes.",
+        "input": "Binary tree: [1,2,3,null,null,4,5]",
+        "output": "\"1,2,#,#,3,4,#,#,5,#,#\""
+    },
+    {
+        "id": 313,
+        "difficulty": "hard",
+        "question": "Wildcard Matching: Implement wildcard pattern matching with support for '?' and '*' where '?' matches any single character and '*' matches any sequence of characters.",
+        "hint": "Use dynamic programming to build a matching table.",
+        "input": "s = \"adceb\", p = \"*a*b\"",
+        "output": "True"
+    },
+    {
+        "id": 314,
+        "difficulty": "hard",
+        "question": "Regular Expression Matching: Implement regular expression matching with support for '.' and '*' where '.' matches any single character and '*' matches zero or more of the preceding element.",
+        "hint": "Use recursion with memoization or dynamic programming.",
+        "input": "s = \"aab\", p = \"c*a*b\"",
+        "output": "True"
+    },
+    {
+        "id": 315,
+        "difficulty": "hard",
+        "question": "Longest Consecutive Sequence: Given an unsorted array of integers, find the length of the longest consecutive elements sequence.",
+        "hint": "Use a hash set for O(n) time complexity.",
+        "input": "[100, 4, 200, 1, 3, 2]",
+        "output": "4"
+    },
+    {
+        "id": 316,
+        "difficulty": "hard",
+        "question": "Maximal Rectangle: Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.",
+        "hint": "Transform each row into a histogram and use a stack to compute the largest area.",
+        "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]",
+        "output": "6"
+    },
+    {
+        "id": 317,
+        "difficulty": "hard",
+        "question": "Longest Substring with At Most K Distinct Characters: Given a string and an integer k, find the length of the longest substring that contains at most k distinct characters.",
+        "hint": "Use a sliding window with a hash map to count characters.",
+        "input": "s = \"eceba\", k = 2",
+        "output": "3"
+    },
+    {
+        "id": 318,
+        "difficulty": "hard",
+        "question": "Reverse Nodes in k-Group: Given a linked list, reverse the nodes of the list k at a time and return the modified list.",
+        "hint": "Reverse every group of k nodes using recursion or iteration.",
+        "input": "Linked list: [1,2,3,4,5], k = 2",
+        "output": "[2,1,4,3,5]"
+    },
+    {
+        "id": 319,
+        "difficulty": "hard",
+        "question": "Find Median from Data Stream: Design a data structure that supports adding numbers and retrieving the median of all numbers added so far.",
+        "hint": "Utilize two heaps (a max-heap and a min-heap) to balance the numbers.",
+        "input": "Stream: [1,2,3,4,5]",
+        "output": "3"
+    },
+    {
+        "id": 320,
+        "difficulty": "hard",
+        "question": "LFU Cache: Design and implement a data structure for a Least Frequently Used (LFU) cache.",
+        "hint": "Combine hash maps and doubly linked lists to achieve O(1) operations.",
+        "input": "Operations: set(1,1), set(2,2), get(1), set(3,3), get(2)",
+        "output": "Outputs based on LFU eviction policy"
+    },
+    {
+        "id": 321,
+        "difficulty": "hard",
+        "question": "Word Break II: Given a string s and a dictionary of words, return all possible sentences where s is segmented into space-separated sequence of dictionary words.",
+        "hint": "Use recursion with memoization to generate all valid sentences.",
+        "input": "s = \"catsanddog\", wordDict = [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"]",
+        "output": "[\"cats and dog\", \"cat sand dog\"]"
+    },
+    {
+        "id": 322,
+        "difficulty": "hard",
+        "question": "Distinct Subsequences: Given two strings s and t, count the number of distinct subsequences of s which equals t.",
+        "hint": "Use dynamic programming to build a table counting subsequences.",
+        "input": "s = \"rabbbit\", t = \"rabbit\"",
+        "output": "3"
+    },
+    {
+        "id": 323,
+        "difficulty": "hard",
+        "question": "Maximum Product Subarray: Given an integer array, find the contiguous subarray within an array (containing at least one number) which has the largest product.",
+        "hint": "Track both the maximum and minimum products to account for negative numbers.",
+        "input": "[2,3,-2,4]",
+        "output": "6"
+    },
+    {
+        "id": 324,
+        "difficulty": "hard",
+        "question": "Longest Duplicate Substring: Given a string, find the longest substring that appears at least twice.",
+        "hint": "Use binary search on the length of the substring combined with hashing.",
+        "input": "\"banana\"",
+        "output": "\"ana\""
+    },
+    {
+        "id": 325,
+        "difficulty": "hard",
+        "question": "Alien Dictionary: Given a sorted list of words in an alien language, derive the order of characters in the language.",
+        "hint": "Build a graph of character precedence and perform topological sorting.",
+        "input": "words = [\"wrt\", \"wrf\", \"er\", \"ett\", \"rftt\"]",
+        "output": "\"wertf\""
+    },
+    {
+        "id": 326,
+        "difficulty": "hard",
+        "question": "Expression Add Operators: Given a string that contains only digits and a target value, return all possibilities to add binary operators ('+', '-', '*') between the digits so that the expression evaluates to the target.",
+        "hint": "Use recursion to explore every possible insertion of operators.",
+        "input": "num = \"123\", target = 6",
+        "output": "[\"1+2+3\", \"1*2*3\"]"
+    },
+    {
+        "id": 327,
+        "difficulty": "hard",
+        "question": "Scramble String: Given two strings s1 and s2, determine if s2 is a scrambled string of s1.",
+        "hint": "Use recursion to check for possible scrambles by partitioning the string.",
+        "input": "s1 = \"great\", s2 = \"rgeat\"",
+        "output": "True"
+    },
+    {
+        "id": 328,
+        "difficulty": "hard",
+        "question": "Concatenated Words: Given a list of words, find all the words that are formed by concatenating at least two shorter words from the list.",
+        "hint": "Use dynamic programming and a hash set or trie to check for concatenation.",
+        "input": "words = [\"cat\",\"cats\",\"dog\",\"catsdog\"]",
+        "output": "[\"catsdog\"]"
+    },
+    {
+        "id": 329,
+        "difficulty": "hard",
+        "question": "Maximum Sum of Non-Adjacent Elements: Given an array of integers, find the maximum sum of elements such that no two elements are adjacent.",
+        "hint": "Use dynamic programming to decide whether to include each element.",
+        "input": "[3, 2, 5, 10, 7]",
+        "output": "15"
+    },
+    {
+        "id": 330,
+        "difficulty": "hard",
+        "question": "Longest Path in a Directed Acyclic Graph (DAG): Given a weighted DAG, find the longest path from a given source to a destination.",
+        "hint": "Perform topological sorting and then use dynamic programming to compute the longest path.",
+        "input": "Graph: {\"A\": {\"B\": 3, \"C\": 2}, \"B\": {\"D\": 4}, \"C\": {\"D\": 5}}, source = \"A\", destination = \"D\"",
+        "output": "\"A -> C -> D with total weight 7\""
     }
 ]
