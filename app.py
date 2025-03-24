@@ -58,7 +58,7 @@ async def submit(interaction: discord.Interaction, question_id: int, code: str):
         response = await generate(code, question_data['question'])
         if "Correct!" in response or "correct!" in response:
             dbConn.update_xp(interaction.user.id, interaction.guild_id, 50)
-        await interaction.followup.send(f'```{response}```')
+        await interaction.followup.send(response)
         #await interaction.response.send_message('Code submitted!')
     except Exception as e:
         await interaction.followup.send("An error occurred while processing your submission. Please try again later.")
