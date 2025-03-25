@@ -56,18 +56,18 @@ class DBManager:
         """Update a user's XP and streak, with streak bonuses."""
         try:
             now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    
+
             with self.create_connection() as conn:
                 cursor = conn.cursor()
-                
+
                 # Fetch existing user record
                 cursor.execute("SELECT score, streak, last_submission FROM leaderboard WHERE user_id = ? AND guild_id = ?", 
                                (user_id, guild_id))
                 row = cursor.fetchone()
-    
+
                 # Default values
                 new_score, new_streak, bonus_xp = xp, 1, 0
-    
+
                 if row is None:
                     # New user, insert initial data
                     cursor.execute(
@@ -77,7 +77,7 @@ class DBManager:
                 else:
                     current_score, current_streak, last_submission = row
                     new_score = current_score + xp  # Base XP update
-    
+
                     # Streak calculation
                     if last_submission:
                         last_submission_date = datetime.datetime.strptime(last_submission, "%Y-%m-%d %H:%M:%S")
@@ -87,21 +87,21 @@ class DBManager:
                             new_streak = 1
                     else:
                         new_streak = 1
-    
+
                     # **Apply Streak Bonus**
                     streak_bonus = {3: 10, 7: 30, 30: 100}  # Streak bonus milestones
                     bonus_xp = streak_bonus.get(new_streak, 0)
                     new_score += bonus_xp
-    
+
                     # Update user record
                     cursor.execute(
                         "UPDATE leaderboard SET score = ?, streak = ?, last_submission = ? WHERE user_id = ? AND guild_id = ?",
                         (new_score, new_streak, now, user_id, guild_id)
                     )
-    
+
                 conn.commit()
             return new_score, new_streak, bonus_xp  # Returning updated values
-    
+
         except Exception as e:
             print(f"Error updating XP: {e}")
             return 0, 0, 0  # Default return in case of an error
@@ -182,3 +182,15 @@ class DBManager:
                 conn.commit()
         except Exception as e:
             print(f"Error marking question as solved: {e}")
+    
+    def get_streak(self, user_id: str, guild_id: str):
+        """Retrieve the current streak for a user in a guild."""
+        try:
+            with self.create_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute("SELECT streak FROM leaderboard WHERE user_id = ? AND guild_id = ?", (user_id, guild_id))
+                result = cursor.fetchone()
+                return result[0] if result else 0  # Default to 0 if no record exists
+        except Exception as e:
+            print(f"Error fetching streak: {e}")
+            return 0

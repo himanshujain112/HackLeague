@@ -13,11 +13,12 @@ bot = commands.Bot(command_prefix='/', intents=discord.Intents.default())
 bot.intents.members = True
 bot.intents.message_content = True
 bot.intents.presences = True
+bot.intents.voice_states = False  # Explicitly disable voice support
 
 @bot.event
 async def on_ready():
     await bot.tree.sync()
-    print(f'🚀 Logged in as {bot.user}')
+    print(f'Synced Commands. 🚀 Logged in as {bot.user}')
 
 # Handle permission errors globally
 async def no_permission(interaction: discord.Interaction):
@@ -81,12 +82,12 @@ async def challenge_error(interaction: discord.Interaction, error):
 async def assign_role(user, guild, new_score):
     """Assigns roles based on XP thresholds, creating them if they don't exist."""
     print(f"🔍 Checking roles for {user.name} with {new_score} XP")
-    
-    # Ensure the bot has the correct permissions
+
+    # Ensure the bot has Manage Roles permission
     if not guild.me.guild_permissions.manage_roles:
         print(f"⚠️ Bot lacks 'Manage Roles' permission in {guild.name}!")
         return "⚠️ I don't have permission to assign roles!"
-
+    
     for xp, role_name in sorted(ROLE_THRESHOLDS.items(), reverse=True):
         if new_score >= xp:
             role = discord.utils.get(guild.roles, name=role_name)
@@ -101,7 +102,15 @@ async def assign_role(user, guild, new_score):
                     return "⚠️ I don't have permission to create roles!"
                 except Exception as e:
                     print(f"❌ Error creating role: {e}")
-                    return "⚠️ Failed to create role!"
+                    return f"⚠️ Failed to create role! Error: {e}"
+
+            # **Check bot's highest role position**
+            bot_member = guild.me
+            print(f"Bot Role Position: {bot_member.top_role.position}, Target Role Position: {role.position}")
+
+            if bot_member.top_role.position <= role.position:
+                print(f"⚠️ Cannot assign '{role_name}', bot's role is too low in hierarchy!")
+                return f"⚠️ I can't assign the **{role_name}** role because my role is below it!"
 
             # **Assign role to the user**
             if role not in user.roles:
@@ -114,7 +123,7 @@ async def assign_role(user, guild, new_score):
                     return "⚠️ I don't have permission to assign roles!"
                 except Exception as e:
                     print(f"❌ Error assigning role: {e}")
-                    return "⚠️ Failed to assign role!"
+                    return f"⚠️ Failed to assign role! Error: {e}"
 
     return None  # No new role assigned
 
@@ -146,19 +155,16 @@ async def submit(interaction: discord.Interaction, question_id: int, code: str):
             dbConn.mark_question_as_solved(user_id, guild_id, question_id)
 
             # **Assign role based on new XP**
-            user = interaction.guild.get_member(interaction.user.id)
-            role_message = await assign_role(user, interaction.guild, new_score) if user else None
+            role_message = await assign_role(interaction.user, interaction.guild, new_score) if interaction.user else None
 
-            streak_msg = f"🔥 **Streak:** {streak} days!" if streak > 1 else ""
-            bonus_msg = f"💎 **Streak Bonus:** {bonus_xp} XP!" if bonus_xp > 0 else ""
             role_msg = f"\n{role_message}" if role_message else ""
 
-            await interaction.followup.send(f"{response}\n\n{streak_msg}\n{bonus_msg}{role_msg}")
+            await interaction.followup.send(f"{response}\n\n{role_msg}")
         else:
             await interaction.followup.send(response)
 
     except Exception as e:
-        await interaction.followup.send("⚠️ An error occurred while processing your submission. Please try again later.")
+        await interaction.followup.send(f"⚠️ An error occurred while processing your submission: {e}")
 
 @bot.tree.command(name='leaderboard', description='Check your rankings in the server.')
 async def leaderboard(interaction: discord.Interaction):
@@ -169,14 +175,13 @@ async def leaderboard(interaction: discord.Interaction):
     except Exception as e:
         await interaction.followup.send("An error occurred while fetching the leaderboard data. Please try again later.")
 
-
-
-@bot.tree.command(name='testrole', description='Test role assignment.')
-async def testrole(interaction: discord.Interaction):
-    user = interaction.guild.get_member(interaction.user.id)
-    role_message = await assign_role(user, interaction.guild, 100)
-    await interaction.response.send_message(role_message if role_message else "No role assigned.")
-
-
-
+@bot.tree.command(name='streak', description='Check your current streak.')
+async def streak(interaction: discord.Interaction):
+    try:
+        await interaction.response.defer()
+        streak = dbConn.get_streak(str(interaction.user.id), str(interaction.guild_id))
+        await interaction.followup.send(f"🔥 **Current Streak:** {streak} days!")
+    except Exception as e:
+        await interaction.followup.send("An error occurred while fetching your streak data. Please try again later.")
+        
 bot.run(DISCORD_TOKEN)

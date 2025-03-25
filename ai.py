@@ -91,5 +91,9 @@ Additional Rules:
     
         
     except Exception as e:
+        if "503" in str(e):
+            return "⚠️ AI service is currently unavailable. Please try again later!"
+        elif "ResourceExhausted" in str(e):
+            return "⚠️ AI service is currently overloaded. Please try again later!"
         logging.error(f"Error: {e}")
         return "⚠️ AI validation failed. Please try again later!"
