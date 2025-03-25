@@ -3,9 +3,11 @@ from dotenv import load_dotenv
 import json
 load_dotenv()
 
-with open('challenges/questions.json', 'r') as file:
-	data = json.loads(file.read())
-
+try:
+	with open('challenges/questions.json', 'r') as file:
+		data = json.loads(file.read())
+except Exception as e:
+	print(f"An error occurred while loading challenges: {e}")
 
 
 GEMINI_KEY = os.getenv('GEMINI_KEY')
