@@ -12,7 +12,7 @@ async def generate(code: str, question: str):
 
     input_text = f"The question is: {question}\n\nThe code is:\n{code}, verify for the given question and also check for any errors."
 
-    model = "gemini-2.0-flash"
+    model = "gemini-2.0-flash-lite"
     contents = [
         types.Content(
             role="user",
