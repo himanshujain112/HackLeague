@@ -147,7 +147,7 @@ async def submit(interaction: discord.Interaction, question_id: int, code: str):
             return
 
         # **Send code for AI review**
-        response = await generate(code, question_data['question'])
+        response = await generate(user_id ,code, question_data['question'])
 
         # **If correct, update XP and track streaks**
         if "Correct!" in response or "correct!" in response:
