@@ -2,19 +2,19 @@ import sqlite3
 import datetime
 
 class DBManager:
-    def __init__(self, db_name="database.db"):
-        self.db_name = db_name
-        self.create_tables()
-
-    def create_connection(self):
-        """Establish and return a connection to the SQLite database."""
-        return sqlite3.connect(self.db_name)
+    _instance = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(DBManager, cls).__new__(cls)
+            cls._instance.connection = sqlite3.connect("database/database.db", check_same_thread=False)
+            cls._instance.create_tables()
+        return cls._instance
 
     def create_tables(self):
         """Create necessary tables if they don't exist."""
         try:
-            with self.create_connection() as conn:
-                cursor = conn.cursor()
+                cursor = self.connection.cursor()
 
                 # Leaderboard Table
                 cursor.execute("""
@@ -48,16 +48,19 @@ class DBManager:
                     );
                 """)
 
-                conn.commit()
+                self.connection.commit()
         except Exception as e:
             print(f"Error creating tables: {e}")
+    
+    def get_connection(self):
+        return self.connection
 
     def update_xp(self, user_id: str, guild_id: str, xp: int):
         """Update a user's XP and streak, with streak bonuses."""
         try:
             now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
 
                 # Fetch existing user record
@@ -110,30 +113,31 @@ class DBManager:
     def get_leaderboard(self, guild_id: str, limit: int = 10):
         """Retrieve the top users for a given guild, ordered by score."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
                     "SELECT user_id, score, streak FROM leaderboard WHERE guild_id = ? ORDER BY score DESC LIMIT ?",
                     (guild_id, limit)
                 )
                 rows = cursor.fetchall()
-                return self.format_leaderboard(rows) if rows else "🏆 No leaderboard data yet!"
+                return rows if rows else []
+                # return self.format_leaderboard(rows) if rows else "🏆 No leaderboard data yet!"
         except Exception as e:
             print(f"Error fetching leaderboard data: {e}")
-            return "⚠️ Error retrieving leaderboard."
+            return []
 
-    def format_leaderboard(self, leaderboardData):
-        """Format leaderboard results into a Discord-friendly string."""
-        formattedData = "🏆 **Leaderboard** 🏆\n"
-        for i, row in enumerate(leaderboardData):
-            user_id, score, streak = row
-            formattedData += f"{i+1}. <@{user_id}> - **{score} XP** | 🔥 Streak: {streak} Days\n"
-        return formattedData
+    # def format_leaderboard(self, leaderboardData):
+    #     """Format leaderboard results into a Discord-friendly string."""
+    #     formattedData = "🏆 **Leaderboard** 🏆\n"
+    #     for i, row in enumerate(leaderboardData):
+    #         user_id, score, streak = row
+    #         formattedData += f"{i+1}. <@{user_id}> - **{score} XP** | 🔥 Streak: {streak} Days\n"
+    #     return formattedData
 
     def get_challenge_index(self, guild_id: str, difficulty: str):
         """Retrieve the last challenge index for a specific guild and difficulty."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT challenge_index FROM challenge_index WHERE guild_id = ? AND difficulty = ?", (guild_id, difficulty))
                 result = cursor.fetchone()
@@ -145,7 +149,7 @@ class DBManager:
     def update_challenge_index(self, guild_id: str, difficulty: str, new_index: int):
         """Update the challenge index for a guild and difficulty level."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO challenge_index (guild_id, difficulty, challenge_index)
@@ -159,7 +163,7 @@ class DBManager:
     def has_solved_question(self, user_id: str, guild_id: str, question_id: int) -> bool:
         """Check if a user has already solved a specific question."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
                     "SELECT 1 FROM solved_challenges WHERE user_id = ? AND guild_id = ? AND question_id = ?",
@@ -173,7 +177,7 @@ class DBManager:
     def mark_question_as_solved(self, user_id: str, guild_id: str, question_id: int):
         """Mark a question as solved for a user so they can't resubmit."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
                     "INSERT INTO solved_challenges (user_id, guild_id, question_id) VALUES (?, ?, ?)",
@@ -186,7 +190,7 @@ class DBManager:
     def get_streak(self, user_id: str, guild_id: str):
         """Retrieve the current streak for a user in a guild."""
         try:
-            with self.create_connection() as conn:
+            with self.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT streak FROM leaderboard WHERE user_id = ? AND guild_id = ?", (user_id, guild_id))
                 result = cursor.fetchone()
