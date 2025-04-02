@@ -9,9 +9,8 @@ logs/
 *.log
 logs/submissions/
 
-database.db
-hackathon.db
-*.db
+
+
 backups/
 *.sqlite3
 
