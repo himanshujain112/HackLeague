@@ -1,6 +1,9 @@
-<div align="right">
-  <img src="https://top.gg/api/widget/upvotes/1353039280800268471.svg" alt="HackLeague Discord Bot">
-</div>
+<a href="https://top.gg/bot/1353039280800268471" target="_blank">
+  <div align="right">
+    <img src="https://top.gg/api/widget/upvotes/1353039280800268471.svg" alt="HackLeague Discord Bot">
+  </div>
+</a>
+
 
 # HackLeague - Discord Bot
 HackLeague is an AI-powered coding judge and leaderboard bot designed for Discord servers. It enables users to participate in daily coding challenges, submit solutions, and earn XP to climb the leaderboard. The bot also provides AI-driven feedback to help users improve their coding skills.
@@ -67,6 +70,9 @@ HackLeague is an AI-powered coding judge and leaderboard bot designed for Discor
 ### Challenge Commands
 
 - `/challenge <difficulty>`: Generate a daily coding challenge (`easy`, `medium`, `hard`).
+- `/assign_role`: Automatically assign a role to users who participate.
+- `/leaderboard`: See which members top the coding charts in your server.
+- `/streaks`: Track your daily participation and streaks like GitHub contributions.
 
 
 ## XP Thresholds for Roles
